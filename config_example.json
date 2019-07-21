@@ -1,0 +1,50 @@
+{
+  "proxy_port": 8080,
+  "proxy_url": "localhost",
+  "log_path": "traffic.log",
+  "local_auth": {
+    "access_key": "fakefake",
+    "secret_key": "fakefake",
+    "temporary_key": "fakefake",
+    "service": "fakefake",
+    "region": "fakefake",
+    "header_blacklist": "fakefake"
+  },
+  "worker": {
+    "sqs_url": "not supported yet",
+    "access_key": "",
+    "secret_key": ""
+  },
+  "test_cases": [
+    {
+      "name": "SSRF1",
+      "operation": "append",
+      "src_match": "*",
+      "value": "{UUID}.ssrf.domain.com"
+    },
+    {
+      "name": "SSRF2",
+      "operation": "replace",
+      "src_match": "us-west-2",
+      "value": "{UUID}.ssrf.domain.com"
+    },
+    {
+      "name": "SSRF3",
+      "operation": "preappend",
+      "src_match": "*",
+      "value": "{UUID}.ssrf.domain.com?"
+    },
+    {
+      "name": "SSRF4",
+      "operation": "replace",
+      "src_match": "https://",
+      "value": "https://{UUID}.ssrf.domain.com?"
+    },
+    {
+      "name": "blind_XSS1",
+      "operation": "append",
+      "src_match": "*",
+      "value": "<img src=/ onerror=alert(123)>"
+    }
+  ]
+}
